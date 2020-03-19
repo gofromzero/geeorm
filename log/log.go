@@ -1,5 +1,5 @@
 // log
-// @Time : 2020/3/19 11:05 
+// @Time : 2020/3/19 11:05
 // @Author : Jeffery Sun
 // @File : log
 // @Software: GoLand
@@ -13,27 +13,20 @@ import (
 	"sync"
 )
 
-sqlite_master
-import (
-	"io/ioutil"
-	"log"
-	"os"
-	"sync"
-)
-
 var (
 	errorLog = log.New(os.Stdout, "\033[31m[error]]\033[0m", log.LstdFlags|log.Lshortfile)
-	infoLog = log.New(os.Stdout, "\033[34m[error]]\033[0m", log.LstdFlags|log.Lshortfile)
-	loggers = []*log.Logger{errorLog, infoLog}
-	mu sync.Mutex
+	infoLog  = log.New(os.Stdout, "\033[34m[error]]\033[0m", log.LstdFlags|log.Lshortfile)
+	loggers  = []*log.Logger{errorLog, infoLog}
+	mu       sync.Mutex
 )
 
 var (
-	Error = errorLog.Println
+	Error  = errorLog.Println
 	Errorf = errorLog.Printf
-	Info = infoLog.Println
-	Infof = infoLog.Printf
+	Info   = infoLog.Println
+	Infof  = infoLog.Printf
 )
+
 // log levels
 const (
 	InfoLevel = iota
