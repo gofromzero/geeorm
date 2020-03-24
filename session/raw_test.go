@@ -8,22 +8,25 @@ package session
 
 import (
 	"database/sql"
+	"github.com/gofromzero/geeorm/dialect"
 	_ "github.com/mattn/go-sqlite3"
 	"os"
 	"testing"
 )
 
 var TestDB *sql.DB
+var TestDialect dialect.Dialect
 
 func TestMain(m *testing.M) {
 	TestDB, _ = sql.Open("sqlite3", "../gee.db")
 	code := m.Run()
+	TestDialect, _ = dialect.GetDialect("sqlite3")
 	_ = TestDB.Close()
 	os.Exit(code)
 }
 
 func NewSession() *Session {
-	return New(TestDB)
+	return New(TestDB, TestDialect)
 }
 
 func TestSession_Exec(t *testing.T) {
